@@ -10,7 +10,7 @@ const register = function (req, res) {
     let hash = authService.getHash(req.body.password);
     models.User.create({
         name: req.body.name,
-        uid: req.body.uid,
+        // uid: req.body.uid,
         usn: req.body.usn,
         email: req.body.email,
         phone: req.body.phone,
