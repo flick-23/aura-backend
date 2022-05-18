@@ -3,6 +3,7 @@ const CONFIG = require("../config");
 
 module.exports = function (sequelize, Sequelize) {
   const Team = sequelize.define("Team", {
+    eventId: { type: Sequelize.BIGINT },
     id: { autoIncrement: true, primaryKey: true, type: Sequelize.BIGINT },
     name: { type: Sequelize.STRING },
     usn_1: { type: Sequelize.STRING },

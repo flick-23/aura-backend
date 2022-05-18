@@ -7,6 +7,7 @@ const asyncRoute =
     Promise.resolve(route(req, res)).catch(next);
 
 const create = function (req, res) {
+  let teamData;
   models.Team.create({
     eventId: req.body.eventId,
     name: req.body.name,
@@ -16,7 +17,16 @@ const create = function (req, res) {
     usn_4: req.body.usn[3],
     usn_5: req.body.usn[4],
   })
-    .then((team) => ReS(res, team, 200))
+    .then((team) => {
+      teamData = team.dataValues.id;
+
+      models.Registration.create({
+        teamId: teamData,
+        eventId: req.body.eventId,
+      });
+
+      ReS(res, team, 200);
+    })
     .catch((err) => ReE(res, err, 422));
 };
 module.exports.create = create;

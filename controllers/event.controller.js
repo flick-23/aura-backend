@@ -6,17 +6,18 @@ const asyncRoute = route => (req, res, next = console.error) =>
 
 const create = function (req, res) {
     models.Event.create({
-        poster: req.files['poster'][0].filename,
+        // poster: req.files['poster'][0].filename,
         name: req.body.name,
         description: req.body.description,
         oneliner: req.body.oneliner,
-        category: req.body.category,
+       /* category: req.body.category,
         minTeamSize: req.body.minTeamSize,
         maxTeamSize: req.body.maxTeamSize,
         registrationLimit: req.body.registrationLimit,
         club: req.body.club,
         coords: req.body.coords,
         rounds: req.body.rounds,
+        */
     }).then(coord => ReS(res, coord, 200))
         .catch(err => ReE(res, err, 422));
 };
