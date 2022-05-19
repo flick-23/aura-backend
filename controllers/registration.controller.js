@@ -34,6 +34,14 @@ const create = async function (req, res) {
         models.Registration.create({
           teamId: teamData,
           eventId: req.body.eventId,
+        }).then((register) => {
+          for (let i = 0; i < usn.length; i++) {
+            models.UserTeam.create({
+              userId: usn[i],
+              teamId: register.dataValues.teamId,
+              eventId: register.dataValues.eventId,
+            });
+          }
         });
 
         ReS(res, team, 200);

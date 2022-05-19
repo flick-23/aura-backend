@@ -18,6 +18,13 @@ module.exports = function (sequelize, Sequelize) {
         key: "usn",
       },
     },
+    eventId: {
+      type: Sequelize.STRING,
+      references: {
+        model: "events",
+        key: "id",
+      },
+    },
     status: {
       type: Sequelize.ENUM("active", "inactive"),
       defaultValue: "active",
