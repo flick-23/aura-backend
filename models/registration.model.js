@@ -6,17 +6,9 @@ module.exports = function (sequelize, Sequelize) {
     id: { autoIncrement: true, primaryKey: true, type: Sequelize.BIGINT },
     teamId: {
       type: Sequelize.BIGINT,
-      references: {
-        model: "teams",
-        key: "id",
-      },
     },
     eventId: {
       type: Sequelize.BIGINT,
-      references: {
-        model: "events",
-        key: "id",
-      },
     },
     status: {
       type: Sequelize.ENUM("active", "inactive"),

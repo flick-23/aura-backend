@@ -17,6 +17,7 @@ var pgRedirectRoute = require('./routes/pgredirect');
 var responseRoute = require('./routes/response');
 var testtxnRoute = require('./routes/testtxn');
 var registerationRoute = require('./routes/registration.router');
+var userteamRoute = require('./routes/userTeam.router');
 
 var app = express();
 
@@ -42,7 +43,8 @@ app.use(baseUrl + '/auth', authRouter);
 app.use(baseUrl + '/notifs', notifRouter);
 app.use(baseUrl + '/coords', coordsRouter);
 app.use(baseUrl + '/events', eventRouter);
-app.use(baseUrl + '/events/register', registerationRoute);
+app.use(baseUrl + '/event/register', registerationRoute);
+app.use(baseUrl + '/registeredData', userteamRoute);
 
 // Init DB
 const model = require("./models/index");
