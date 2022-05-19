@@ -19,7 +19,7 @@ module.exports = function (sequelize, Sequelize) {
       },
     },
     eventId: {
-      type: Sequelize.STRING,
+      type: Sequelize.BIGINT,
       references: {
         model: "events",
         key: "id",
