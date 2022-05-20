@@ -5,6 +5,8 @@ const { to, ReE, ReS } = require("../services/utils.service");
 const create = function (req, res) {
   models.Volunteer.create({
     eventId: req.body.eventId,
+    eventName: req.body.eventName,
+    poster: req.body.poster,
     userId: req.body.usn,
   })
     .then((notif) => ReS(res, notif, 200))

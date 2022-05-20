@@ -40,6 +40,8 @@ const create = async function (req, res) {
               userId: usn[i],
               teamId: register.dataValues.teamId,
               eventId: register.dataValues.eventId,
+              eventName: req.body.eventName,
+              poster: req.body.poster,
             });
           }
         });

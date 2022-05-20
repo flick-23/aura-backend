@@ -6,6 +6,8 @@ module.exports = function (sequelize, Sequelize) {
     id: { autoIncrement: true, type: Sequelize.BIGINT, primaryKey: true },
     eventId: { type: Sequelize.BIGINT },
     userId: { type: Sequelize.STRING },
+    eventName: { type: Sequelize.STRING },
+    poster: { type: Sequelize.STRING },
     status: {
       type: Sequelize.ENUM("active", "inactive"),
       defaultValue: "active",

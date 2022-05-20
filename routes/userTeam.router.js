@@ -3,6 +3,6 @@ var router = express.Router();
 const UserTeamController = require("../controllers/userTeam.controller");
 
 router.get("/", UserTeamController.getAll);
-router.get("/:id&:userId", UserTeamController.getEventByIdAndUsn);
+router.get("/:userId", UserTeamController.getEventByUsn);
 
 module.exports = router;

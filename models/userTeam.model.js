@@ -13,6 +13,12 @@ module.exports = function (sequelize, Sequelize) {
     eventId: {
       type: Sequelize.BIGINT,
     },
+    eventName: {
+      type: Sequelize.STRING,
+    },
+    poster: {
+      type: Sequelize.STRING,
+    },
     status: {
       type: Sequelize.ENUM("active", "inactive"),
       defaultValue: "active",
