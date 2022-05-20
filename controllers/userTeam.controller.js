@@ -8,3 +8,14 @@ const getAll = function (req, res) {
     .catch((err) => ReE(res, err, 422));
 };
 module.exports.getAll = getAll;
+
+const getEventByIdAndUsn = function (req, res) {
+  models.UserTeam.findAll({
+    where: {
+      userId: req.params.userId,
+    },
+  })
+    .then((coord) => ReS(res, coord, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getEventByIdAndUsn = getEventByIdAndUsn;

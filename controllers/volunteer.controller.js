@@ -29,3 +29,15 @@ const getEventById = function (req, res) {
     .catch((err) => ReE(res, err, 422));
 };
 module.exports.getEventById = getEventById;
+
+const getEventByUsn = function (req, res) {
+  console.log("userId : ", req.params.userId);
+  models.Volunteer.findAll({
+    where: {
+      userId: req.params.userId,
+    },
+  })
+    .then((coord) => ReS(res, coord, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getEventByUsn = getEventByUsn;
