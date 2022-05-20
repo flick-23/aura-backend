@@ -1,0 +1,31 @@
+const CONFIG = require("../config");
+const models = require("../models/index");
+const { to, ReE, ReS } = require("../services/utils.service");
+
+const create = function (req, res) {
+  models.Volunteer.create({
+    eventId: req.body.eventId,
+    userId: req.body.usn,
+  })
+    .then((notif) => ReS(res, notif, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.create = create;
+
+const getAll = function (req, res) {
+  models.Volunteer.findAll()
+    .then((coord) => ReS(res, coord, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getAll = getAll;
+
+const getEventById = function (req, res) {
+  models.Volunteer.findAll({
+    where: {
+      eventId: req.params.id,
+    },
+  })
+    .then((coord) => ReS(res, coord, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getEventById = getEventById;
