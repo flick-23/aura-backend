@@ -1,24 +1,32 @@
 const CONFIG = require('../config');
 const models = require('../models/index');
 const {to, ReE, ReS } = require('../services/utils.service');
+const userService = require("../services/auth.service");
 const authService = require('../services/auth.service');
 
 const create = function (req, res) {
-    let hash = authService.getHash(req.body.coordPassword);
+    let hash = authService.getHash(req.body.password);
     // console.log("REQUEST:" + JSON.stringify(req));
     models.Coord.create({
-        image: req.files['image'][0].filename,
-        coordName: req.body.coordName,
-        coordContact: req.body.coordContact,
-        coordEmail: req.body.coordEmail,
-        coordUsn: req.body.coordUsn,
+        // image: req.files['image'][0].filename,
+        name: req.body.name,
+        eventId: req.body.eventId,
+        phone: req.body.phone,
+        email: req.body.email,
+        usn: req.body.usn,
         coordUid: req.body.coordUid,
-        coordPassword: hash,
+        password: hash,
         coordRole: req.body.coordRole,
     }).then(coord => ReS(res, coord, 200))
         .catch(err => ReE(res, err, 422));
 };
 module.exports.create = create;
+
+function authenticate(req, res, next) {
+    userService.authenticateCoord(req.body)
+        .then(user => {user ? ReS(res, user, 200) : ReE(res, { message: 'Username or password is incorrect' }, 422)})
+        .catch(err => next(err));
+}module.exports.authenticate = authenticate;
 
 const update = function (req, res) {
     models.Coord.update({

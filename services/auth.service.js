@@ -51,6 +51,22 @@ async function authenticate({username, password}) {
 }
 module.exports.authenticate = authenticate;
 
+async function authenticateCoord({username, password}) {
+    const user = await models.Coord.findOne({where: {email: username}});
+    console.log(user.name);
+    const result = await validPassword(user.password, password);
+
+    if (result) {
+        const token = jwt.sign({sub: user.id, role: user.role}, config.secret);
+        // const token = jwt.sign({sub: user.id, role: "Admin"}, config.secret);
+        return {
+            user,
+            token
+        };
+    }
+}
+module.exports.authenticateCoord = authenticateCoord;
+
 async function getAll() {
     return getUsersFromDB();
 }

@@ -19,3 +19,14 @@ const getEventByUsn = function (req, res) {
     .catch((err) => ReE(res, err, 422));
 };
 module.exports.getEventByUsn = getEventByUsn;
+
+const getEventById = function (req, res) {
+  models.UserTeam.findAll({
+    where: {
+      eventId: req.params.id,
+    },
+  })
+    .then((coord) => ReS(res, coord, 200))
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getEventById = getEventById;
