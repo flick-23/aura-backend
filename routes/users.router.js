@@ -7,5 +7,6 @@ router.post('/register', UserController.register);
 router.post('/authenticate', UserController.authenticate);     // public route
 router.get('/', authorize(), UserController.getAll); // admin only
 router.get('/:id', authorize(), UserController.getById);       // all authenticated users
+router.get('/userData/:id', UserController.getByUsn);       
 
 module.exports = router;

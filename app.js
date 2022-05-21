@@ -19,6 +19,8 @@ var testtxnRoute = require('./routes/testtxn');
 var registerationRoute = require('./routes/registration.router');
 var userteamRoute = require('./routes/userTeam.router');
 var volunterRoute = require('./routes/volunteer.router');
+var teamRoute = require('./routes/team.router');
+
 
 var app = express();
 
@@ -47,6 +49,7 @@ app.use(baseUrl + '/events', eventRouter);
 app.use(baseUrl + '/event/register', registerationRoute);
 app.use(baseUrl + '/registeredData', userteamRoute);
 app.use(baseUrl + '/volunteer', volunterRoute);
+app.use(baseUrl + '/team', teamRoute);
 
 // Init DB
 const model = require("./models/index");

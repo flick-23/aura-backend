@@ -52,3 +52,13 @@ function getById(req, res, next) {
 }
 module.exports.getById = getById;
 
+const getByUsn = function (req, res) {
+    models.User.findAll({
+      where: {
+        usn: req.params.id,
+      },
+    })
+      .then((coord) => ReS(res, coord, 200))
+      .catch((err) => ReE(res, err, 422));
+  };
+  module.exports.getByUsn = getByUsn;
