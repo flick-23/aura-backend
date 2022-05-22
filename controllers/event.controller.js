@@ -18,6 +18,7 @@ const create = function (req, res) {
         club: req.body.club,
         coords: req.body.coords,
         rounds: req.body.rounds,
+        img:req.body.img,
         
     }).then(coord => ReS(res, coord, 200))
         .catch(err => ReE(res, err, 422));
