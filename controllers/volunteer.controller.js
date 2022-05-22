@@ -43,3 +43,39 @@ const getEventByUsn = function (req, res) {
     .catch((err) => ReE(res, err, 422));
 };
 module.exports.getEventByUsn = getEventByUsn;
+
+const getVolunteersEventWise = function (req, res) {
+  let usns = [];
+
+  let names = [];
+  let numbers = [];
+  let emails = [];
+  models.Volunteer.findAll({
+    where: {
+      eventId: req.params.id,
+    },
+  })
+    .then((coord) => {
+      for (let i = 0; i < coord.length; i++) {
+        usns.push(coord[i].userId);
+      }
+      for (let i = 0; i < usns.length; i++) {
+        models.User.findAll({
+          where: {
+            usn: usns[i],
+          },
+        })
+          .then((users) => {
+            names.push(users[0].dataValues.name);
+            numbers.push(users[0].dataValues.phone);
+            emails.push(users[0].dataValues.email);
+            if (names.length == usns.length) {
+              ReS(res, { names, usns, emails, numbers }, 200);
+            }
+          })
+          .catch((err) => ReE(res, err, 422));
+      }
+    })
+    .catch((err) => ReE(res, err, 422));
+};
+module.exports.getVolunteersEventWise = getVolunteersEventWise;
