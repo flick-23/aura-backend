@@ -10,8 +10,10 @@ const register = function (req, res) {
     let hash = authService.getHash(req.body.password);
     models.User.create({
         name: req.body.name,
-        // uid: req.body.uid,
+        // screenshot: req.files['poster'][0].filename,
         usn: req.body.usn,
+        utr: req.body.utr,
+        paymentMode: req.body.paymentMode,
         email: req.body.email,
         phone: req.body.phone,
         college: req.body.college,
