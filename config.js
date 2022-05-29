@@ -1,19 +1,13 @@
+try {
+  const dotenv = require("dotenv").config();
+} catch (err) {}
 module.exports = {
-	secret: 'This is a secret',
-	db_dialect: 'mysql',
-	db_host: 'mysql-db',
-	db_port: '3306',
-	db_name: 'aura2022',
-	db_user: 'flick',
-	db_pass: 'admin',
-	pw_salt: 'This is namak',
-	MID: 'wkwuSC67220918333714',
-	PAYTM_ENVIRONMENT: 'TEST',
-	PAYTM_MERCHANT_KEY: 'g#DBkf__tJrxXRI!',
-	WEBSITE: 'WEBSTAGING',
-	CHANNEL_ID: 'WEB',
-	INDUSTRY_TYPE_ID: 'Retail',
-	CALLBACK_URL: 'http://localhost:3000/response',
-	PAYTM_TEST_URL: 'https://securegw-stage.paytm.in/order/process',
-	PAYTM_PROD_URL: '',
+  secret: "This is a secret",
+  db_dialect: "mysql",
+  db_host: process.env.MYSQL_HOST,
+  db_port: "3306",
+  db_name: process.env.MYSQL_NAME,
+  db_user: process.env.MYSQL_USER,
+  db_pass: process.env.MYSQL_PASSWORD,
+  pw_salt: "This is namak",
 };
